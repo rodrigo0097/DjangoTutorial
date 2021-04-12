@@ -1,6 +1,10 @@
 from django.urls import path
 from . import views
 app_name = "polls"
+"""
+Se desea hacer una implementación de views génerica (as_view()) para lo cual se 
+van a cambiar los paths, por esto se deja la primera version (Compleja) como documentación 
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('<int:question_id>/', views.detail, name='detail'),
@@ -8,3 +12,10 @@ urlpatterns = [
     path('<int:question_id>/vote/', views.vote, name='vote'),
 ]
 
+"""
+urlpatterns = [
+    path('', views.IndexView.as_view(), name='index'),
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
